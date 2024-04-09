@@ -10,5 +10,5 @@ private:
 public:
     Katze(string tname, int iDNr, double startgewicht, double tpreis);
     void artikulieren();
-    ~Katze();
+    //~Katze();
 };

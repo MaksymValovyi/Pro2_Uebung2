@@ -13,10 +13,9 @@ private:
     static int currentMaxNumber;
 
 public:
-    Tier();
+    //Tier();
     Tier(string tname, int iDNr, double tpreis, double startgewicht);
 
-    ~Tier();
     double preis;
     string geburt;
     double gewicht;
@@ -36,7 +35,6 @@ public:
     {
         currentMaxNumber++;
     }
-
 
 
     //загуглити це абстрактне

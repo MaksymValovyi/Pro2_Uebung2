@@ -2,9 +2,8 @@
 #include <iostream>
 using namespace std;
 
-#include "Tier.h"
-
-#include "Katze.h"
+#include "Tier.cpp"//Я хз чому, але працюють тільки цпп файли
+#include "Katze.cpp"
 /*
     #include <Rind.h>
     #include <Huhn.h>
