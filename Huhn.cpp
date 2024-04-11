@@ -14,7 +14,7 @@ void Huhn::artikulieren()
 {
     cout << "###" << endl;
     cout << "Hallo farmer" << endl;
-    cout << "ich heisse: " << this->name << ", idNr" << getNumber() << " , wiege: " <<endl << this->gewicht << " kg und wurde gekauft : "<< this->geburt << endl;
+    cout << "ich heisse: " << this->name << ", idNr = " << getNumber() << " , wiege: " <<endl << this->gewicht << " kg und wurde gekauft : "<< this->geburt << endl;
     cout << "Ich bin eine " << this->tierart << endl;
     cout <<  "###" << endl;
 }

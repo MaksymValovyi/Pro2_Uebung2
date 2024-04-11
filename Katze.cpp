@@ -14,7 +14,7 @@ void Katze::artikulieren()
 {
     cout << "###" << endl;
     cout << "Hallo farmer" << endl;
-    cout << "ich heisse: " << this->name << ", idNr" << getNumber() << " , wiege: " << this->gewicht << " kg" << endl << "Ich wurde gekauft : "<< this->geburt << endl;
+    cout << "ich heisse: " << this->name << ", idNr = " << getNumber() << " , wiege: " << this->gewicht << " kg" << endl << "Ich wurde gekauft : "<< this->geburt << endl;
     cout << "Ich bin eine " << this->tierart << endl;
     cout <<  "###" << endl;
 }
