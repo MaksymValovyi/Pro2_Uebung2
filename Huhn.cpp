@@ -21,5 +21,13 @@ void Huhn::artikulieren()
 
 void Huhn::fuettern(double menge)
 {
-    cout << "leker";
+    this->gewicht += (menge*0.25);
+}
+
+//видалення обʼєкта
+void Huhn::tierLoeschen(){
+    //if (this != nullptr){
+    //    delete this;
+    //}
+    delete this;
 }

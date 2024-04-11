@@ -12,5 +12,7 @@ public:
     void artikulieren();
     void fuettern(double);
     int faengtMause();
+    //видалення обʼєкта
+    void tierLoeschen(); 
     //~Katze();
 };

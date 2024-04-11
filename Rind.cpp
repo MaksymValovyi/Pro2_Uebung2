@@ -21,5 +21,13 @@ void Rind::artikulieren()
 
 void Rind::fuettern(double menge)
 {
-    cout << "leker";
+    this->gewicht += (menge*0.05);
+}
+
+//видалення обʼєкта
+void Rind::tierLoeschen(){
+    //if (this != nullptr){
+    //    delete this;
+    //}
+    delete this;
 }

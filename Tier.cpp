@@ -13,5 +13,3 @@ Tier::Tier(string tname, int iDNr, double tpreis, double startgewicht)
     geburt = asctime(localtime(&erg));
     tierart=" ";
 }
-
-

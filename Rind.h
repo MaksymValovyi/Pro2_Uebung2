@@ -11,4 +11,6 @@ public:
     Rind(string tname, int iDNr, double startgewicht, double tpreis);
     void artikulieren();
     void fuettern(double);
+    //видалення обʼєкта
+    void tierLoeschen();
 };
