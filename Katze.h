@@ -10,5 +10,7 @@ private:
 public:
     Katze(string tname, int iDNr, double startgewicht, double tpreis);
     void artikulieren();
+    void fuettern(double);
+    int faengtMause();
     //~Katze();
 };

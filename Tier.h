@@ -40,6 +40,7 @@ public:
     //загуглити це абстрактне
     //цей мембер матимуть усі кіндери, але кожен кіндер повинен це самостійно ініціалізуватиs
     virtual void artikulieren() = 0;
+    virtual void fuettern(double menge) = 0;
 };
 
 #endif // __MYHEADER_H__

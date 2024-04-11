@@ -1,4 +1,6 @@
-
+#include <string>
+#include <iostream>
+using namespace std;
 #include "Tier.h"
 
 class Huhn : public Tier
@@ -6,6 +8,7 @@ class Huhn : public Tier
 private:
     /* data */
 public:
-    Huhn(/* args */);
-    ~Huhn();
+    Huhn(string tname, int iDNr, double startgewicht, double tpreis);
+    void artikulieren();
+    void fuettern(double);
 };

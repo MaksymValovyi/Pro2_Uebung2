@@ -1,16 +1,16 @@
 #include <string>
 #include <iostream>
 
-#include "Katze.h"
+#include "Rind.h"
 using namespace std;
 
-Katze::Katze(string tname, int iDNr, double startgewicht, double tpreis)
+Rind::Rind(string tname, int iDNr, double startgewicht, double tpreis)
     :Tier(tname, iDNr, tpreis, startgewicht)
 {
-        tierart="Katze";
+        tierart="Rind";
 }
 
-void Katze::artikulieren()
+void Rind::artikulieren()
 {
     cout << "###" << endl;
     cout << "Hallo farmer" << endl;
@@ -19,12 +19,7 @@ void Katze::artikulieren()
     cout <<  "###" << endl;
 }
 
-void Katze::fuettern(double menge)
+void Rind::fuettern(double menge)
 {
-    this->gewicht += (menge*0.15);
-}
-
-int Katze::faengtMause()
-{
-    return 1;
+    cout << "leker";
 }
