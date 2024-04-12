@@ -1,3 +1,7 @@
+//Valovyi Maksym
+//Angewandte Informatik
+//Metrikel 435745
+
 #include <string>
 #include <iostream>
 #include <ctime>
@@ -27,7 +31,7 @@ void tierArtikulierenFromList(Tier* tierArray[], int i = 0){
             i++;
         }else{
             cout << "-----------------------------" << endl;
-            cout << "Completely wrong id on ARTIKULIEREN CASE ";
+            cout << "Completely wrong id on ARTIKULIEREN CASE " << endl;
             cout << "-----------------------------" << endl;
         }
     }
@@ -49,33 +53,51 @@ int main(int argc, char const *argv[])
     string name;
 
     while (1==1){
+        //Wahl
+        cout << "--------------------------" << endl;
         cout << "Was moechten Sie tun ?" << endl;
         cout << "1. Tier einkaufen" << endl;
         cout << "2. Tier fuettern" << endl;
         cout << "3. Tier verkaufen" << endl;
         cout << "4. Tier artikulieren" << endl;
         cout << "5. Programm beenden" << endl;
+        cout << "--------------------------" << endl;
         cin >> option;
         switch (option)
         {
             case 1:     //Tier einkaufen
             {
-                
+                //Wahl
                 cout << "Welches Tier moechten Sie ? " << endl;
                 cout << "1. Katze" << endl;
                 cout << "2. Rind" << endl;
                 cout << "3. Huhn" << endl;
                 cin >> tierArt;
+
+                //Optimierung des Codes
+                //Naechste Ziele sind repetativ fuer jede Wahl. 
+                //Deswegen, will ich weniger if-else schreiben.
+                cout << "Waehlen Sie Name fuer Ihr Tier " << endl;
+                cin >> name;
+                cout << "Wie viel zahlen Sie ? " << endl;
+                cin >> preis;
+
+                if(preis < 0){
+                    cout << "Ungueltige Menge" << endl;
+                    break;
+                }
+                
+                cout << "Gewicht von Ihr Tier " << endl;
+                cin >> gewicht; 
+
+                if(gewicht < 0){
+                    cout << "Ungueltiges Gewicht" << endl;
+                    break;
+                }
+
                 switch (tierArt){
                     case 1:     // Katze
                     {
-                        cout << "Waehlen Sie Name fuer Ihre Katze " << endl;
-                        cin >> name;
-                        cout << "Wie viel zahlen Sie ? " << endl;
-                        cin >> preis;
-                        cout << "Gewicht der Katze " << endl;
-                        cin >> gewicht; 
-
                         //create Katze
                         pTier[Tier::getCurrentmaxNumber()] = new Katze(name , Tier::getCurrentmaxNumber(), gewicht, preis);
                         pTier[Tier::getCurrentmaxNumber()]->artikulieren(); //show yourself
@@ -86,13 +108,6 @@ int main(int argc, char const *argv[])
                     }
                     case 2:     // Rind
                     {
-                        cout << "Waehlen Sie Name fuer Ihr Rind " << endl;
-                        cin >> name;
-                        cout << "Wie viel zahlen Sie ? " << endl;
-                        cin >> preis;
-                        cout << "Gewicht von Rind " << endl;
-                        cin >> gewicht; 
-
                         //create Rind
                         pTier[Tier::getCurrentmaxNumber()] = new Rind(name , Tier::getCurrentmaxNumber(), gewicht, preis);
                         pTier[Tier::getCurrentmaxNumber()]->artikulieren(); //show yourself                    
@@ -103,13 +118,6 @@ int main(int argc, char const *argv[])
                     }
                     case 3:     //Huhn
                     {
-                        cout << "Waehlen Sie Name fuer Ihr Huhn " << endl;
-                        cin >> name;
-                        cout << "Wie viel zahlen Sie ? " << endl;
-                        cin >> preis;
-                        cout << "Gewicht von Huhn " << endl;
-                        cin >> gewicht; 
-
                         //create Huhn
                         pTier[Tier::getCurrentmaxNumber()] = new Huhn(name , Tier::getCurrentmaxNumber(), gewicht, preis);
                         pTier[Tier::getCurrentmaxNumber()]->artikulieren(); //show yourself
@@ -137,15 +145,23 @@ int main(int argc, char const *argv[])
                         cout << "Waehlen Sie Ihr Tier" << endl;
                         cin >> option;
                         option=option-1;
+
                         if((option < 0) || (option >= Tier::getCurrentmaxNumber())){
-                            cout << "Wrong animals index";
+                            cout << "Wrong animal index" << endl;
                         }else if(pTier[option]==nullptr){
                             cout << "Tier ist schon verkauft";
                         }else{
                             cout << "Wie viel kg wollen Sie geben ? " << endl;
                             cin >> gewicht; 
-                            pTier[option]->fuettern(gewicht);
-                            pTier[option]->artikulieren();
+
+                            //Tier kann nicht <0 kg essen
+                            if (gewicht < 0){
+                                cout << "Ungueltige Menge" << endl;
+                                break;
+                            }else{
+                                pTier[option]->fuettern(gewicht);
+                                pTier[option]->artikulieren();
+                            }
                         }
 
                         break;
@@ -157,14 +173,21 @@ int main(int argc, char const *argv[])
                         option=option-1;
 
                         if((option < 0) || (option >= Tier::getCurrentmaxNumber())){
-                            cout << "Wrong animals index"<< endl;
+                            cout << "Wrong animal index"<< endl;
                         }else if(pTier[option]==nullptr){
                             cout << "Tier ist schon verkauft"<< endl;
                         }else{
                             cout << "Wie viel kg wollen Sie geben ? " << endl;
                             cin >> gewicht; 
-                            pTier[option]->fuettern(gewicht);
-                            pTier[option]->artikulieren();
+
+                            //Tier kann nicht <0 kg essen
+                            if (gewicht < 0){
+                                cout << "Ungueltige Menge" << endl;
+                                break;
+                            }else{
+                                pTier[option]->fuettern(gewicht);
+                                pTier[option]->artikulieren();
+                            }
                         }
 
                         break;
@@ -194,7 +217,7 @@ int main(int argc, char const *argv[])
                         cin >> option;
                         option=option-1;
                         if((option < 0) || (option >= Tier::getCurrentmaxNumber())){
-                            cout << "Wrong animals index"<< endl;
+                            cout << "Wrong animal index"<< endl;
                         }else if (pTier[option] == nullptr){
                             cout << "Tier ist schon verkauft"<< endl;
                         }else {
@@ -213,7 +236,7 @@ int main(int argc, char const *argv[])
                         cin >> option;
                         option=option-1;
                         if((option < 0) || (option >= Tier::getCurrentmaxNumber())){
-                            cout << "Wrong animals index" << endl;
+                            cout << "Wrong animal index" << endl;
                         }else if (pTier[option] == nullptr){
                             cout << "Tier ist schon verkauft"<< endl;
                         }else {
@@ -236,25 +259,6 @@ int main(int argc, char const *argv[])
             case 4:     //Tier artikulieren
             {
                 tierArtikulierenFromList(pTier, 0);
-                /*
-
-                This is how it was, but as I use artikulieren() for whole list, i've decided to create
-                a function for this
-
-                int i = 0;
-                while (pTier[i]!=nullptr || i <= Tier::getCurrentmaxNumber()){
-                    if(pTier[i]==nullptr){
-                        i++;
-                    }else if (pTier[i] != nullptr){
-                        pTier[i]->artikulieren();
-                        i++;
-                    }else{
-                        cout << "-----------------------------" << endl;
-                        cout << "Completely wrong id on ARTIKULIEREN CASE ";
-                        cout << "-----------------------------" << endl;
-                    }
-                }
-                */
                 break;
             }
             case 5:     //Programm beenden
@@ -272,7 +276,7 @@ int main(int argc, char const *argv[])
                         i++;
                     }else{
                         cout << "-----------------------------" << endl;
-                        cout << "Completely wrong id on DELETE CASE";
+                        cout << "Completely wrong id on DELETE CASE" << endl;
                         cout << "-----------------------------" << endl;
                     }
                     

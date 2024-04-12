@@ -13,11 +13,11 @@ Rind::Rind(string tname, int iDNr, double startgewicht, double tpreis)
 
 void Rind::artikulieren()
 {
-    cout << "###" << endl;
+    cout << endl << "###" << endl;
     cout << "Hallo farmer" << endl;
     cout << "Ich heisse: " << this->name << ", idNr = " << getNumber() << " , wiege: "<< this->gewicht << " kg" << endl << "Ich wurde gekauft : "<< this->geburt << endl;
     cout << "Als " << this->tierart << " kann ich " << literProTag << " Liter Milch geben" << endl;
-    cout <<  "###" << endl;
+    cout <<  "###" << endl << endl ;
 }
 
 void Rind::fuettern(double menge)
@@ -35,9 +35,9 @@ void Rind::tierLoeschen(){
 }
 
 void Rind::milchGebenEffizienz(){
-    if(this->gewicht <= 10 && this->gewicht >0){
-        literProTag = 1;
-    }else if (this->gewicht > 10){
+    if(this->gewicht < 10 && this->gewicht >0){
+        literProTag = 0;
+    }else if (this->gewicht >= 10){
         literProTag = this->gewicht / 10;
     }else{
         literProTag = 0;

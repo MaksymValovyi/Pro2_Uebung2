@@ -13,11 +13,12 @@ Huhn::Huhn(string tname, int iDNr, double startgewicht, double tpreis)
 
 void Huhn::artikulieren()
 {
-    cout << "###" << endl;
+    cout << endl << "###" << endl;
     cout << "Hallo farmer" << endl;
-    cout << "ich heisse: " << this->name << ", idNr = " << getNumber() << " , wiege: " <<endl << this->gewicht << " kg und wurde gekauft : "<< this->geburt << endl;
+    cout << "Ich heisse: " << this->name << ", idNr = " << getNumber() << " , wiege: " << this->gewicht << " kg";
+    cout << "Ich wurde gekauft : "<< this->geburt << endl;
     cout << "Als " << this->tierart << " kann ich "<< amountEggs << " Eier legen "<<endl;
-    cout <<  "###" << endl;
+    cout <<  "###" << endl << endl;
 }
 
 void Huhn::fuettern(double menge)

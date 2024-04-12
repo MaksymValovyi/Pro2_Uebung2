@@ -13,11 +13,11 @@ Katze::Katze(string tname, int iDNr, double startgewicht, double tpreis)
 
 void Katze::artikulieren()
 {
-    cout << "###" << endl;
+    cout << endl << "###" << endl;
     cout << "Hallo farmer" << endl;
-    cout << "ich heisse: " << this->name << ", idNr = " << getNumber() << " , wiege: " << this->gewicht << " kg" << endl << "Ich wurde gekauft : "<< this->geburt << endl;
+    cout << "Ich heisse: " << this->name << ", idNr = " << getNumber() << " , wiege: " << this->gewicht << " kg" << endl << "Ich wurde gekauft : "<< this->geburt << endl;
     cout << "Als " << this->tierart << " kann ich pro Tag - " << mauseGegessen << " Mause fangen" << endl;
-    cout <<  "###" << endl;
+    cout <<  "###" << endl << endl;
 }
 
 void Katze::fuettern(double menge)
