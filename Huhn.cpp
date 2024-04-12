@@ -8,6 +8,7 @@ Huhn::Huhn(string tname, int iDNr, double startgewicht, double tpreis)
     :Tier(tname, iDNr, tpreis, startgewicht)
 {
         tierart="Huhn";
+        eggsEffizienz();
 }
 
 void Huhn::artikulieren()
@@ -15,13 +16,14 @@ void Huhn::artikulieren()
     cout << "###" << endl;
     cout << "Hallo farmer" << endl;
     cout << "ich heisse: " << this->name << ", idNr = " << getNumber() << " , wiege: " <<endl << this->gewicht << " kg und wurde gekauft : "<< this->geburt << endl;
-    cout << "Ich bin eine " << this->tierart << endl;
+    cout << "Als " << this->tierart << " kann ich "<< amountEggs << " Eier legen "<<endl;
     cout <<  "###" << endl;
 }
 
 void Huhn::fuettern(double menge)
 {
     this->gewicht += (menge*0.25);
+    eggsEffizienz();
 }
 
 //видалення обʼєкта
@@ -30,4 +32,14 @@ void Huhn::tierLoeschen(){
     //    delete this;
     //}
     delete this;
+}
+
+void Huhn::eggsEffizienz(){
+    if(this->gewicht < 3 && this->gewicht >0){
+        amountEggs = 0;
+    }else if(this->gewicht >= 3){
+        amountEggs = this->gewicht / 3;
+    }else{
+        amountEggs = 0;
+    }
 }

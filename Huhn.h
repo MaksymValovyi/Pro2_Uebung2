@@ -6,11 +6,12 @@ using namespace std;
 class Huhn : public Tier
 {
 private:
-    /* data */
+    int amountEggs;
 public:
     Huhn(string tname, int iDNr, double startgewicht, double tpreis);
     void artikulieren();
     void fuettern(double);
+    void eggsEffizienz();
     //видалення обʼєкта
     void tierLoeschen();
 };

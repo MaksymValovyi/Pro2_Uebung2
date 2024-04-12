@@ -6,11 +6,12 @@ using namespace std;
 class Rind : public Tier
 {
 private:
-    /* data */
+    int literProTag = 1;
 public:
     Rind(string tname, int iDNr, double startgewicht, double tpreis);
     void artikulieren();
     void fuettern(double);
+    void milchGebenEffizienz();
     //видалення обʼєкта
     void tierLoeschen();
 };

@@ -44,7 +44,7 @@ int main(int argc, char const *argv[])
 
     //noetige Variablen um zu waehlen
     int option = 0, tierArt = 0;
-    int preis = 0; // price for an animal
+    int preis = 0; 
     double gewicht = 0;
     string name;
 
@@ -132,17 +132,22 @@ int main(int argc, char const *argv[])
                 {
                     case 1:         //Liste + fuettern
                     {
-
                         tierArtikulierenFromList(pTier, 0);
 
                         cout << "Waehlen Sie Ihr Tier" << endl;
                         cin >> option;
                         option=option-1;
-                        cout << "Wie viel kg wollen Sie geben ? " << endl;
-                        cin >> gewicht; 
-                        pTier[option]->fuettern(gewicht);
-                        pTier[option]->artikulieren();
-                        
+                        if((option < 0) || (option >= Tier::getCurrentmaxNumber())){
+                            cout << "Wrong animals index";
+                        }else if(pTier[option]==nullptr){
+                            cout << "Tier ist schon verkauft";
+                        }else{
+                            cout << "Wie viel kg wollen Sie geben ? " << endl;
+                            cin >> gewicht; 
+                            pTier[option]->fuettern(gewicht);
+                            pTier[option]->artikulieren();
+                        }
+
                         break;
                     }
                     case 2:         //Direkt fuettern
@@ -150,10 +155,17 @@ int main(int argc, char const *argv[])
                         cout << "Waehlen Sie Ihr Tier" << endl;
                         cin >> option;
                         option=option-1;
-                        cout << "Wie viel kg wollen Sie geben ? " << endl;
-                        cin >> gewicht; 
-                        pTier[option]->fuettern(gewicht);
-                        pTier[option]->artikulieren();
+
+                        if((option < 0) || (option >= Tier::getCurrentmaxNumber())){
+                            cout << "Wrong animals index"<< endl;
+                        }else if(pTier[option]==nullptr){
+                            cout << "Tier ist schon verkauft"<< endl;
+                        }else{
+                            cout << "Wie viel kg wollen Sie geben ? " << endl;
+                            cin >> gewicht; 
+                            pTier[option]->fuettern(gewicht);
+                            pTier[option]->artikulieren();
+                        }
 
                         break;
                     }
@@ -181,9 +193,11 @@ int main(int argc, char const *argv[])
                         cout << "Waehlen Sie Ihr Tier" << endl;
                         cin >> option;
                         option=option-1;
-                        if((option < 0) && (option > Tier::getCurrentmaxNumber())){
-                            cout << "Wrong animals index";
-                        }else{
+                        if((option < 0) || (option >= Tier::getCurrentmaxNumber())){
+                            cout << "Wrong animals index"<< endl;
+                        }else if (pTier[option] == nullptr){
+                            cout << "Tier ist schon verkauft"<< endl;
+                        }else {
                             tierVerkaufen(pTier[option]);
                         }
                         /*
@@ -198,9 +212,11 @@ int main(int argc, char const *argv[])
                         cout << "Waehlen Sie Ihr Tier" << endl;
                         cin >> option;
                         option=option-1;
-                        if((option < 0) && (option > Tier::getCurrentmaxNumber())){
-                            cout << "Wrong animals index";
-                        }else{
+                        if((option < 0) || (option >= Tier::getCurrentmaxNumber())){
+                            cout << "Wrong animals index" << endl;
+                        }else if (pTier[option] == nullptr){
+                            cout << "Tier ist schon verkauft"<< endl;
+                        }else {
                             tierVerkaufen(pTier[option]);
                         }
                         /*
