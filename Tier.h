@@ -36,11 +36,11 @@ public:
         currentMaxNumber++;
     }
 
-
     //загуглити це абстрактне
     //цей мембер матимуть усі кіндери, але кожен кіндер повинен це самостійно ініціалізувати
     virtual void artikulieren() = 0;            //тварина говорить
     virtual void fuettern(double menge) = 0;    //кормити тварину
+
     virtual void tierLoeschen() = 0;            //видалення обʼєкта
 };
 

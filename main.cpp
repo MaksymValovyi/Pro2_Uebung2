@@ -13,45 +13,30 @@ using namespace std;
 
 int Tier::currentMaxNumber=0;
 
+void tierVerkaufen(Tier *&gewaelteTier){
+    gewaelteTier->tierLoeschen();
+    gewaelteTier=nullptr;
+}
+
+void tierArtikulierenFromList(Tier* tierArray[], int i = 0){
+    while (tierArray[i]!=nullptr || i <= Tier::getCurrentmaxNumber()){
+        if(tierArray[i]==nullptr){
+            i++;
+        }else if (tierArray[i] != nullptr){
+            tierArray[i]->artikulieren();
+            i++;
+        }else{
+            cout << "-----------------------------" << endl;
+            cout << "Completely wrong id on ARTIKULIEREN CASE ";
+            cout << "-----------------------------" << endl;
+        }
+    }
+}
+
 int main(int argc, char const *argv[])
 {
 
-    /*
-    Katze *pMyCat=new Katze("Mauz01", Tier::getCurrentmaxNumber(), 120.5, 4.0);
-    pMyCat-> artikulieren();
-    pMyCat->fuettern(2);
-    pMyCat->artikulieren();
-
-    Rind *pMyRind=new Rind("Rinda", Tier::getCurrentmaxNumber(), 12.5, 1.0);
-    pMyRind-> artikulieren();
-
-    Huhn *pMyHuhn=new Huhn("Huha", Tier::getCurrentmaxNumber(), 55.25, 3.0);
-    pMyHuhn-> artikulieren();
-
-    Tier *pTier = pMyCat; 
-    pTier->fuettern(10);
-    pTier->artikulieren();
-
-    cout << "-----------------" << endl;
-    pTier->tierLoeschen();
-    //pTier->artikulieren();
-    pMyCat->artikulieren();
-    */
-
-/////////////////////
-
-    //Tier *pTier[MAX];
-    //тут робиться список з 100 тваррин. Кожен забитий слот - якийсь підклас.
-    //Суть в тому, що в коді ми зможемо до цього списку звератись одними і тими самим функціями, 
-    //бо це віртуальні мембери, тіпа кожен клас сам знає, що робити.
-    //Це круто крч
-    //if(ptier[i]!=nullptr){
-    //  pTier[i]->artikulieren();
-    //} 
-    
-    //exit(0) вийти з while(), коли я в кейсі
-   
-   //Inizialisierung der Liste der Tiere
+    //Inizialisierung der Liste der Tiere
     Tier *pTier[MAX];
     for(int i = 0 ; i < MAX; i++){
         pTier[i]=nullptr;
@@ -95,6 +80,8 @@ int main(int argc, char const *argv[])
                         pTier[Tier::getCurrentmaxNumber()] = new Katze(name , Tier::getCurrentmaxNumber(), gewicht, preis);
                         pTier[Tier::getCurrentmaxNumber()]->artikulieren(); //show yourself
 
+                        Tier::intCurrentMaxNumber();    //increase id
+
                         break;
                     }
                     case 2:     // Rind
@@ -109,6 +96,8 @@ int main(int argc, char const *argv[])
                         //create Rind
                         pTier[Tier::getCurrentmaxNumber()] = new Rind(name , Tier::getCurrentmaxNumber(), gewicht, preis);
                         pTier[Tier::getCurrentmaxNumber()]->artikulieren(); //show yourself                    
+
+                        Tier::intCurrentMaxNumber();    //increase id
 
                         break;
                     }
@@ -125,6 +114,7 @@ int main(int argc, char const *argv[])
                         pTier[Tier::getCurrentmaxNumber()] = new Huhn(name , Tier::getCurrentmaxNumber(), gewicht, preis);
                         pTier[Tier::getCurrentmaxNumber()]->artikulieren(); //show yourself
 
+                        Tier::intCurrentMaxNumber();    //increase id
                         break;
                     }
                     Tier::intCurrentMaxNumber();    //increase id
@@ -142,12 +132,8 @@ int main(int argc, char const *argv[])
                 {
                     case 1:         //Liste + fuettern
                     {
-                        //while for Liste
-                        int i = 0;
-                        while (pTier[i]!=nullptr){
-                            pTier[i]->artikulieren();
-                            i++;
-                        }
+
+                        tierArtikulierenFromList(pTier, 0);
 
                         cout << "Waehlen Sie Ihr Tier" << endl;
                         cin >> option;
@@ -155,6 +141,7 @@ int main(int argc, char const *argv[])
                         cout << "Wie viel kg wollen Sie geben ? " << endl;
                         cin >> gewicht; 
                         pTier[option]->fuettern(gewicht);
+                        pTier[option]->artikulieren();
                         
                         break;
                     }
@@ -166,6 +153,7 @@ int main(int argc, char const *argv[])
                         cout << "Wie viel kg wollen Sie geben ? " << endl;
                         cin >> gewicht; 
                         pTier[option]->fuettern(gewicht);
+                        pTier[option]->artikulieren();
 
                         break;
                     }
@@ -176,7 +164,7 @@ int main(int argc, char const *argv[])
                 }
                 break;
             }
-            case 3:
+            case 3:     //Tier verkaufen
             {
                 cout << "Was wollen Sie machen ? " << endl;
                 cout << "1. Liste von Tieren bekommen und eine von den loeschen" << endl;
@@ -187,19 +175,22 @@ int main(int argc, char const *argv[])
                 {
                     case 1:         //Liste + Loeschen
                     {
-                        //while for Liste
-                        int i = 0;
-                        while (pTier[i]!=nullptr){
-                            pTier[i]->artikulieren();
-                            i++;
-                        }
 
+                        tierArtikulierenFromList(pTier, 0);
+                        
                         cout << "Waehlen Sie Ihr Tier" << endl;
                         cin >> option;
                         option=option-1;
+                        if((option < 0) && (option > Tier::getCurrentmaxNumber())){
+                            cout << "Wrong animals index";
+                        }else{
+                            tierVerkaufen(pTier[option]);
+                        }
+                        /*
+                        How it was before.
                         pTier[option]->tierLoeschen();
                         pTier[option]=nullptr;  // no animal, only nullptr
-
+                        */
                         break;
                     }
                     case 2:         //Direkt loeschen
@@ -207,9 +198,16 @@ int main(int argc, char const *argv[])
                         cout << "Waehlen Sie Ihr Tier" << endl;
                         cin >> option;
                         option=option-1;
+                        if((option < 0) && (option > Tier::getCurrentmaxNumber())){
+                            cout << "Wrong animals index";
+                        }else{
+                            tierVerkaufen(pTier[option]);
+                        }
+                        /*
+                        How it was before
                         pTier[option]->tierLoeschen();
                         pTier[option]=nullptr;  // no animal, only nullptr
-
+                        */
                         break;
                     }
                     case 3:         //Wrong page
@@ -219,10 +217,16 @@ int main(int argc, char const *argv[])
                 }
                 break;
             }
-            case 4:
+            case 4:     //Tier artikulieren
             {
+                tierArtikulierenFromList(pTier, 0);
+                /*
+
+                This is how it was, but as I use artikulieren() for whole list, i've decided to create
+                a function for this
+
                 int i = 0;
-                while (pTier[i]!=nullptr && i < Tier::getCurrentmaxNumber()){
+                while (pTier[i]!=nullptr || i <= Tier::getCurrentmaxNumber()){
                     if(pTier[i]==nullptr){
                         i++;
                     }else if (pTier[i] != nullptr){
@@ -234,18 +238,21 @@ int main(int argc, char const *argv[])
                         cout << "-----------------------------" << endl;
                     }
                 }
-                cout  << " I CASE 4 = " << i << endl; 
+                */
                 break;
             }
-            case 5:
+            case 5:     //Programm beenden
             {
                 int i = 0;
-                while (pTier[i]!=nullptr && i < Tier::getCurrentmaxNumber()){
+                while (pTier[i]!=nullptr || i < Tier::getCurrentmaxNumber()){
                     if(pTier[i] == nullptr){
                         i++;
                     }else if(pTier[i]!=nullptr){
+                        tierVerkaufen(pTier[i]);
+                        /*
                         pTier[i]->tierLoeschen();
                         pTier[i]=nullptr;
+                        */
                         i++;
                     }else{
                         cout << "-----------------------------" << endl;
